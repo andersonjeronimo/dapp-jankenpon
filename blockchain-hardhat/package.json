@@ -1,0 +1,12 @@
+{
+  "scripts": {
+    "start": "npx hardhat node",
+    "test": "npx hardhat test"
+  },
+  "devDependencies": {
+    "@nomicfoundation/hardhat-toolbox": "^4.0.0",
+    "@nomiclabs/hardhat-etherscan": "^3.1.8",
+    "dotenv": "^16.3.1",
+    "hardhat": "^2.19.3"
+  }
+}
