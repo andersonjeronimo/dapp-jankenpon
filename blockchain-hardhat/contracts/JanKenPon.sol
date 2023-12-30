@@ -59,40 +59,40 @@ contract JanKenPon is IJanKenPon{
     }
 
     function setBid(uint256 newBid) external {
-        require(msg.sender == owner, "You do not have permission");
+        require(tx.origin == owner, "You do not have permission");
         require(players[ONE].userAddress == address(0),
             "You cannot change bid with a game in progress");
         bid = newBid;
     }
 
     function setCommission(uint8 newCommission) external {
-        require(msg.sender == owner, "You do not have permission.");
+        require(tx.origin == owner, "You do not have permission.");
         require(players[ONE].userAddress == address(0),
             "You cannot change commission with a game in progress");
         commission = newCommission;
     }
 
     function getBalance() external view returns (uint) {
-        require(msg.sender == owner, "This account do not have permission");
+        require(tx.origin == owner, "This account do not have permission");
         return address(this).balance;
     }
 
     function choose(JKPLibrary.Choice _choice) external payable {
-        require(msg.sender != owner, "The owner cannot play");
+        require(tx.origin != owner, "The owner cannot play");
         require(players[ONE].userAddress == address(0) ||
                 players[TWO].userAddress == address(0),
                 "Play and reset for a new game"
         );
         if (players[ONE].userAddress == address(0)) {
             require(msg.value >= bid, "Invalid bid");
-            players[ONE].userAddress = msg.sender;
+            players[ONE].userAddress = tx.origin;
             players[ONE].choice = _choice;
         } else {
             require(players[ONE].userAddress != address(0) &&
-            msg.sender != players[ONE].userAddress,
+            tx.origin != players[ONE].userAddress,
             "Waiting player 2 choose");
             require(msg.value >= bid, "Invalid bid");
-            players[TWO].userAddress = msg.sender;
+            players[TWO].userAddress = tx.origin;
             players[TWO].choice = _choice;
         }
     }
@@ -193,7 +193,7 @@ contract JanKenPon is IJanKenPon{
     }
 
     /* modifier restricted() {
-        require(msg.sender == owner, "This account do not have permission");
+        require(tx.origin == owner, "This account do not have permission");
         _;
     } */
 }

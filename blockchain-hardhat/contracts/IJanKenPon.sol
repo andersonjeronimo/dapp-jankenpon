@@ -9,7 +9,7 @@ interface IJanKenPon {
     function setCommission(uint8 newCommission) external;
     function getBalance() external view returns (uint);
     function choose(JKPLibrary.Choice _choice) external payable;
-    function reset() external;
     function play() external;
+    function reset() external;
     function getLeaderboard() external view returns (address[] memory);    
 }

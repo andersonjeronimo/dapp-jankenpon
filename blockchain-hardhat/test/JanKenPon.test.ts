@@ -21,11 +21,7 @@ describe("JanKenPon", function () {
     return { contract, owner, otherAccount1, otherAccount2 };
   }
 
-  describe("Deployment", function () {
-    it("Should test", async function () {
-      const { contract, owner, otherAccount1, otherAccount2 } = await loadFixture(deployFixture);
-      expect(true).to.equal(true);
-    });
+  describe("Contract tests", function () {   
 
     it("Should get the leaderboard", async function () {
       const { contract, owner, otherAccount1, otherAccount2 } = await loadFixture(deployFixture);
