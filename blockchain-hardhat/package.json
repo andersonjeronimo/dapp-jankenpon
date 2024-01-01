@@ -1,7 +1,12 @@
 {
   "scripts": {
     "start": "npx hardhat node",
-    "test": "npx hardhat test"
+    "test": "npx hardhat test",
+    "deploy-full":"npx hardhat run scripts/deploy-full.ts --network bsctest",
+    "deploy-local-full":"npx hardhat run scripts/deploy-full.ts --network local",
+    "deploy-local-adapter":"npx hardhat run scripts/deploy-adapter.ts --network local",
+    "deploy-local-implementation":"npx hardhat run scripts/deploy-implementation.ts --network local",
+    "verify": "npx hardhat verify --network bsctest <CONTRACT_ADDRESS>"
   },
   "devDependencies": {
     "@nomicfoundation/hardhat-toolbox": "^4.0.0",
